@@ -1,0 +1,451 @@
+# Synthetic test corpus for lab 01 (RAG in BigQuery).
+# Fictional company. All personal data is FAKE:
+#   - e-mails only in example.com,
+#   - PESEL numbers have an INVALID checksum,
+#   - bank accounts are PL00 0000 ... (always invalid).
+#
+# Block types inside a section: p (paragraph), ul (bullet list),
+# ol (numbered list), table (columns + rows).
+# render: text  -> normal PDF with a text layer
+# render: scan  -> page rendered as an image only (no text layer, needs OCR)
+
+company:
+  name: Lumen Logistics sp. z o.o.
+  address: ul. Testowa 7, 53-000 Wrocław (adres fikcyjny)
+
+documents:
+
+  # ------------------------------------------------------------------
+  - id: doc01
+    file: 01_returns_policy.pdf
+    language: pl
+    render: text
+    title: Regulamin sklepu internetowego Lumen Pack
+    meta: "Wersja 3.1 | Obowiązuje od: 2025-06-01"
+    sections:
+      - heading: "§1. Postanowienia ogólne"
+        blocks:
+          - p: >-
+              Sklep internetowy Lumen Pack, dostępny pod adresem lumenpack.example.com, prowadzi
+              Lumen Logistics sp. z o.o. Sklep oferuje materiały opakowaniowe: kartony, folię
+              stretch, taśmy, wypełniacze i palety. Regulamin określa zasady zawierania umów
+              sprzedaży, dostawy, odstąpienia od umowy oraz składania reklamacji.
+          - p: >-
+              Klientem może być konsument, przedsiębiorca na prawach konsumenta albo przedsiębiorca.
+              Postanowienia dotyczące odstąpienia od umowy stosuje się wyłącznie do konsumentów
+              i przedsiębiorców na prawach konsumenta.
+      - heading: "§2. Zamówienia"
+        blocks:
+          - p: >-
+              Zamówienia przyjmowane są przez całą dobę. Zamówienia złożone w dni robocze do godziny
+              13:00 są kompletowane i wysyłane tego samego dnia. Minimalna wartość zamówienia wynosi
+              50 zł brutto.
+          - p: >-
+              Klient otrzymuje potwierdzenie zamówienia na adres e-mail podany w formularzu. Umowa
+              sprzedaży zostaje zawarta z chwilą wysłania potwierdzenia.
+      - heading: "§3. Ceny i płatności"
+        blocks:
+          - p: >-
+              Ceny w sklepie podane są w złotych polskich i zawierają podatek VAT. Dostępne metody
+              płatności to przelew tradycyjny, szybki przelew online oraz płatność kartą. Dla
+              przedsiębiorców z podpisaną umową ramową dostępny jest przelew z terminem płatności
+              14 dni.
+      - heading: "§4. Dostawa"
+        blocks:
+          - p: >-
+              Dostawa paczek realizowana jest przez kuriera w ciągu 1–2 dni roboczych od wysyłki.
+              Dostawa palet realizowana jest transportem własnym Lumen Logistics w ciągu 2–3 dni
+              roboczych. Przy zamówieniach powyżej 500 zł brutto dostawa paczek jest bezpłatna.
+      - heading: "§5. Odstąpienie od umowy i zwroty"
+        blocks:
+          - p: >-
+              Sklep dokłada wszelkich starań, aby zamówione produkty spełniały oczekiwania Klientów,
+              a materiały opakowaniowe są pakowane w sposób zabezpieczający je przed uszkodzeniem
+              w transporcie. Konsument, który zawarł umowę na odległość, może odstąpić od niej bez
+              podawania przyczyny w terminie 14 dni od dnia, w którym wszedł w posiadanie towaru,
+              składając oświadczenie przez formularz kontaktowy lub e-mailem na adres
+              zwroty@example.com. Do zachowania terminu wystarczy wysłanie oświadczenia przed jego
+              upływem. Towar należy odesłać na adres magazynu we Wrocławiu niezwłocznie, nie później
+              niż w ciągu 14 dni od złożenia oświadczenia.
+          - p: >-
+              Sklep zwraca Konsumentowi wszystkie otrzymane płatności, w tym koszt najtańszej
+              oferowanej dostawy, w terminie 14 dni od otrzymania oświadczenia o odstąpieniu, przy
+              użyciu tej samej metody płatności. Sklep może wstrzymać się ze zwrotem do chwili
+              otrzymania towaru. Bezpośrednie koszty odesłania towaru ponosi Konsument, chyba że
+              towar był wadliwy.
+          - p: >-
+              Prawo odstąpienia nie przysługuje w odniesieniu do towarów wykonanych według
+              specyfikacji Konsumenta, w szczególności kartonów z nadrukiem indywidualnym.
+      - heading: "§6. Reklamacje"
+        blocks:
+          - p: >-
+              Reklamacje można składać e-mailem na adres reklamacje@example.com. Sklep rozpatruje
+              reklamację w terminie 30 dni od jej otrzymania i informuje Klienta o decyzji e-mailem.
+
+  # ------------------------------------------------------------------
+  - id: doc02
+    file: 02_leave_policy_2024.pdf
+    language: pl
+    render: text
+    title: Polityka urlopowa Lumen Logistics
+    meta: "Wersja 1.0 | Obowiązuje od: 2024-01-01 | Status: ARCHIWALNA (zastąpiona przez wersję 2.0)"
+    sections:
+      - heading: "1. Cel i zakres"
+        blocks:
+          - p: >-
+              Polityka określa zasady planowania i udzielania urlopów wypoczynkowych oraz dni wolnych
+              dodatkowych dla pracowników zatrudnionych na podstawie umowy o pracę.
+      - heading: "2. Wymiar urlopu"
+        blocks:
+          - p: >-
+              Wymiar urlopu wypoczynkowego wynosi 20 dni dla pracowników ze stażem pracy krótszym niż
+              10 lat oraz 26 dni dla pracowników ze stażem co najmniej 10 lat, zgodnie z Kodeksem pracy.
+          - p: >-
+              Dodatkowo każdy pracownik otrzymuje 1 dzień wolny z okazji urodzin, do wykorzystania
+              w miesiącu urodzin.
+      - heading: "3. Planowanie i wnioski"
+        blocks:
+          - p: >-
+              Wniosek urlopowy należy złożyć bezpośrednio u przełożonego w formie papierowej,
+              co najmniej 14 dni kalendarzowych przed planowanym rozpoczęciem urlopu. Urlop powyżej
+              5 dni roboczych wymaga dodatkowo akceptacji kierownika działu.
+          - p: >-
+              Plan urlopów na dany rok kalendarzowy ustalany jest do 31 stycznia.
+      - heading: "4. Urlop zaległy"
+        blocks:
+          - p: >-
+              Urlop niewykorzystany w danym roku należy wykorzystać najpóźniej do 30 września
+              roku następnego.
+
+  # ------------------------------------------------------------------
+  - id: doc03
+    file: 03_leave_policy_2026.pdf
+    language: pl
+    render: text
+    title: Polityka urlopowa Lumen Logistics
+    meta: "Wersja 2.0 | Obowiązuje od: 2026-03-01 | Zastępuje wersję 1.0 z 2024-01-01"
+    sections:
+      - heading: "1. Cel i zakres"
+        blocks:
+          - p: >-
+              Polityka określa zasady planowania i udzielania urlopów wypoczynkowych oraz dni wolnych
+              dodatkowych dla pracowników zatrudnionych na podstawie umowy o pracę. Wersja 2.0
+              wprowadza elektroniczny obieg wniosków oraz dni regeneracyjne.
+      - heading: "2. Wymiar urlopu"
+        blocks:
+          - p: >-
+              Wymiar urlopu wypoczynkowego wynosi 20 dni dla pracowników ze stażem pracy krótszym niż
+              10 lat oraz 26 dni dla pracowników ze stażem co najmniej 10 lat, zgodnie z Kodeksem pracy.
+          - p: >-
+              Od 1 marca 2026 roku dzień wolny z okazji urodzin zostaje zastąpiony przez 2 dni
+              regeneracyjne w roku kalendarzowym. Dni regeneracyjnych nie przenosi się na kolejny rok.
+      - heading: "3. Planowanie i wnioski"
+        blocks:
+          - p: >-
+              Wniosek urlopowy składa się wyłącznie elektronicznie w systemie LumenHR, co najmniej
+              7 dni kalendarzowych przed planowanym rozpoczęciem urlopu. Wnioski są akceptowane
+              w systemie przez bezpośredniego przełożonego; dodatkowa akceptacja kierownika działu
+              nie jest już wymagana.
+          - p: >-
+              Plan urlopów na dany rok kalendarzowy ustalany jest do 31 stycznia.
+      - heading: "4. Urlop zaległy"
+        blocks:
+          - p: >-
+              Urlop niewykorzystany w danym roku należy wykorzystać najpóźniej do 30 września
+              roku następnego.
+
+  # ------------------------------------------------------------------
+  - id: doc04
+    file: 04_price_list_2026.pdf
+    language: pl
+    render: text
+    title: Cennik usług logistycznych 2026
+    meta: "Obowiązuje od: 2026-01-01 | Ceny netto w PLN"
+    sections:
+      - heading: "Transport i magazynowanie"
+        blocks:
+          - table:
+              columns: ["Kod", "Usługa", "Jednostka", "Cena netto (PLN)"]
+              widths: [15, 85, 50, 40]
+              rows:
+                - ["T01", "Przesyłka paletowa krajowa (EUR, do 800 kg)", "paleta", "189,00"]
+                - ["T02", "Przesyłka półpaletowa krajowa (do 400 kg)", "półpaleta", "129,00"]
+                - ["T03", "Paczka kurierska do 30 kg", "paczka", "24,90"]
+                - ["T04", "Dopłata za towar niebezpieczny ADR", "przesyłka", "+35% ceny"]
+                - ["M01", "Magazynowanie – miejsce paletowe", "miesiąc", "45,00"]
+                - ["M02", "Kompletacja zamówienia (pick & pack)", "zamówienie", "3,20"]
+                - ["M03", "Kompletacja – każda kolejna pozycja", "pozycja", "0,60"]
+                - ["U01", "Ubezpieczenie ładunku", "przesyłka", "0,3% wartości, min. 15,00"]
+      - heading: "Uwagi"
+        blocks:
+          - ul:
+              - "Wszystkie ceny są cenami netto; do cen należy doliczyć podatek VAT 23%."
+              - "Klienci z umową zawartą na co najmniej 12 miesięcy otrzymują rabat 10% na usługi transportowe (kody T01–T03)."
+              - "Rabat nie obejmuje usług magazynowych (kody M01–M03) ani ubezpieczenia."
+              - "Maksymalna waga palety w usłudze T01 wynosi 800 kg."
+              - "Dopłata paliwowa jest aktualizowana co miesiąc i publikowana osobno."
+
+  # ------------------------------------------------------------------
+  - id: doc05
+    file: 05_wms_incident_procedure.pdf
+    language: pl
+    render: text
+    title: Procedura postępowania w przypadku awarii systemu WMS
+    meta: "Procedura PR-OPS-07 | Wersja 1.4 | Obowiązuje od: 2025-11-01"
+    sections:
+      - heading: "1. Cel procedury"
+        blocks:
+          - p: >-
+              Celem procedury jest zapewnienie ciągłości operacji magazynowych w przypadku awarii
+              systemu zarządzania magazynem (WMS) oraz ograniczenie opóźnień w wysyłkach do klientów.
+              Procedura dotyczy wszystkich magazynów Lumen Logistics: we Wrocławiu i w Poznaniu.
+          - p: >-
+              System WMS odpowiada za przyjęcia towaru, rozmieszczenie na lokacjach, kompletację
+              zamówień, pakowanie i wydania. Awaria WMS oznacza, że pracownicy nie mogą skanować
+              etykiet, potwierdzać pobrań ani drukować dokumentów wydania.
+      - heading: "2. Definicje"
+        blocks:
+          - ul:
+              - "Awaria – brak możliwości wykonania co najmniej jednej z operacji: przyjęcie, kompletacja, wydanie, przez więcej niż 5 minut."
+              - "Kierownik zmiany – osoba odpowiedzialna za magazyn w trakcie danej zmiany."
+              - "Dyżurny IT – pracownik działu IT pełniący dyżur telefoniczny 24/7."
+              - "Tryb papierowy – awaryjny sposób pracy oparty na wydrukowanych listach kompletacyjnych i ręcznej ewidencji."
+      - heading: "3. Wykrycie i zgłoszenie awarii"
+        blocks:
+          - p: >-
+              Każdy pracownik, który zauważy brak działania skanerów lub komunikaty o braku połączenia
+              z WMS, niezwłocznie informuje kierownika zmiany. Kierownik zmiany weryfikuje, czy problem
+              dotyczy pojedynczego urządzenia, czy całego magazynu, wykonując próbne skanowanie na
+              co najmniej trzech różnych terminalach.
+          - p: >-
+              Jeśli problem dotyczy pojedynczego urządzenia, terminal należy wymienić na zapasowy
+              z szafy serwisowej. Jeśli problem dotyczy całego magazynu, kierownik zmiany zgłasza
+              awarię w systemie zgłoszeń ServiceDesk z priorytetem P1 oraz rozpoczyna pomiar czasu
+              trwania awarii.
+      - heading: "4. Pierwsze 45 minut awarii"
+        blocks:
+          - p: >-
+              W pierwszej fazie awarii zespół nie przechodzi na tryb papierowy, ponieważ większość
+              awarii WMS jest usuwana w krótkim czasie, a przejście na tryb papierowy i powrót z niego
+              generują ryzyko błędów w stanach magazynowych. W tym czasie pracownicy wykonują prace
+              niewymagające systemu: porządkowanie stref, przygotowanie opakowań, rozładunek dostaw
+              bez ich przyjmowania na stan.
+          - p: >-
+              Kierownik zmiany co 15 minut sprawdza status zgłoszenia w ServiceDesk i informuje zespół
+              o postępach. Gdy czas trwania awarii przekroczy 45 minut, faza pierwsza zostaje
+              zakończona.
+      - heading: "5. Uruchomienie trybu papierowego"
+        blocks:
+          - p: >-
+              Po zakończeniu fazy pierwszej kierownik zmiany uruchamia tryb papierowy oraz telefonicznie
+              powiadamia dyżurnego IT pod numerem wewnętrznym 4410. Kierownik zmiany powiadamia również
+              dział obsługi klienta, który informuje klientów kluczowych o możliwych opóźnieniach.
+          - ol:
+              - "Wydrukuj z zapasowego serwera raportowego ostatnią dostępną listę zamówień do kompletacji."
+              - "Przydziel zamówienia kompletującym według stref magazynu."
+              - "Każde pobranie odnotuj ręcznie na liście: lokacja, indeks, ilość, podpis."
+              - "Zamówienia z priorytetem EXPRESS kompletuj w pierwszej kolejności."
+              - "Wydania dokumentuj na formularzu awaryjnym F-OPS-07-A w dwóch egzemplarzach."
+      - heading: "6. Przywrócenie systemu"
+        blocks:
+          - p: >-
+              Po przywróceniu działania WMS dyżurny IT potwierdza kierownikowi zmiany gotowość systemu.
+              Wszystkie operacje zarejestrowane ręcznie należy wprowadzić do WMS w ciągu 4 godzin od
+              przywrócenia systemu. Za wprowadzenie danych odpowiada kierownik zmiany, który może
+              wyznaczyć do tego dwóch pracowników.
+          - p: >-
+              Po wprowadzeniu danych wykonuje się inwentaryzację kontrolną lokacji, z których
+              pobierano towar w trybie papierowym. Rozbieżności powyżej 2% wymagają wyjaśnienia
+              i raportu do kierownika magazynu.
+      - heading: "7. Raport po awarii"
+        blocks:
+          - p: >-
+              W ciągu 2 dni roboczych od zakończenia awarii kierownik magazynu przygotowuje raport
+              zawierający: czas trwania awarii, liczbę opóźnionych zamówień, przyczynę (na podstawie
+              informacji od działu IT) oraz rekomendacje działań zapobiegawczych. Raport przekazywany
+              jest dyrektorowi operacyjnemu.
+      - heading: "8. Szkolenia i testy"
+        blocks:
+          - p: >-
+              Każdy kierownik zmiany przechodzi szkolenie z niniejszej procedury przy rozpoczęciu
+              pracy na stanowisku oraz raz w roku. Test trybu papierowego przeprowadzany jest
+              w każdym magazynie raz na kwartał, poza okresem szczytu sprzedażowego (listopad–grudzień).
+
+  # ------------------------------------------------------------------
+  - id: doc06
+    file: 06_quarterly_report_q3_2026.pdf
+    language: pl
+    render: text
+    title: Raport kwartalny – III kwartał 2026
+    meta: "Okres: 2026-07-01 – 2026-09-30 | Dokument wewnętrzny"
+    sections:
+      - heading: "1. Podsumowanie"
+        blocks:
+          - p: >-
+              III kwartał 2026 roku był dla Lumen Logistics okresem dalszego wzrostu. Przychody netto
+              wyniosły 18,4 mln zł, co oznacza wzrost o 12% rok do roku i o 8,9% w porównaniu
+              z II kwartałem 2026 (16,9 mln zł). Kluczowym wydarzeniem kwartału było otwarcie
+              magazynu w Poznaniu.
+      - heading: "2. Wskaźniki operacyjne"
+        blocks:
+          - table:
+              columns: ["Wskaźnik", "II kw. 2026", "III kw. 2026"]
+              widths: [90, 50, 50]
+              rows:
+                - ["Liczba wysłanych paczek", "371 500", "412 000"]
+                - ["Liczba wysłanych palet", "55 800", "61 200"]
+                - ["Terminowość dostaw", "95,1%", "96,3%"]
+                - ["Wskaźnik reklamacji", "0,51%", "0,42%"]
+                - ["Zatrudnienie (etaty, koniec okresu)", "212", "248"]
+      - heading: "3. Magazyn w Poznaniu"
+        blocks:
+          - p: >-
+              Magazyn w Poznaniu rozpoczął działalność 15 sierpnia 2026 roku. Obiekt ma powierzchnię
+              9 000 m² i 6 500 miejsc paletowych. Do końca września obłożenie osiągnęło 41%.
+              Kierownikiem magazynu został Tomasz Kędzierski.
+      - heading: "4. Ryzyka i plany"
+        blocks:
+          - ul:
+              - "Rosnące koszty paliwa – dopłata paliwowa wzrosła w kwartale o 6%."
+              - "Rekrutacja na zmianę nocną we Wrocławiu przed szczytem sprzedażowym."
+              - "Plan na IV kwartał: osiągnięcie 70% obłożenia magazynu w Poznaniu."
+
+  # ------------------------------------------------------------------
+  - id: doc07
+    file: 07_meeting_minutes_2026_09_18.pdf
+    language: pl
+    render: text
+    title: Protokół ze spotkania kadry kierowniczej
+    meta: "Data spotkania: 2026-09-18 | Miejsce: Wrocław, sala 2.04 | POUFNE"
+    sections:
+      - heading: "Uczestnicy"
+        blocks:
+          - ul:
+              - "Anna Wiśniewska-Zając – dyrektor operacyjna (anna.zajac@example.com, tel. +48 601 234 567)"
+              - "Tomasz Kędzierski – kierownik magazynu Poznań (t.kedzierski@example.com)"
+              - "Marta Lis – kierownik HR (marta.lis@example.com, tel. +48 602 345 678)"
+              - "Jakub Nowicki – kierownik IT (j.nowicki@example.com)"
+      - heading: "1. Sytuacja kadrowa w magazynie Poznań"
+        blocks:
+          - p: >-
+              Tomasz Kędzierski poinformował, że magazynier Paweł Grabowski (PESEL 85030412345,
+              zam. ul. Przykładowa 15/3, 60-100 Poznań) przebywa na zwolnieniu lekarskim od
+              2 września 2026 r. z powodu urazu kręgosłupa i według informacji od pracownika
+              zwolnienie potrwa co najmniej do końca października. Marta Lis zwróciła uwagę, że
+              informacje o stanie zdrowia pracownika nie powinny być przekazywane poza dział HR.
+          - p: >-
+              Omówiono także skargę złożoną przez magazynierkę Karolinę Mazur (PESEL 92111507654)
+              dotyczącą grafiku zmian nocnych. Skarga zostanie rozpatrzona przez dział HR do
+              30 września.
+      - heading: "2. Incydent WMS z 11 września"
+        blocks:
+          - p: >-
+              Jakub Nowicki przedstawił przyczynę awarii WMS z 11 września: wygaśnięcie certyfikatu
+              TLS na serwerze aplikacyjnym. Awaria trwała 1 godzinę i 50 minut; w magazynie we
+              Wrocławiu uruchomiono tryb papierowy. Do końca października zostanie wdrożony
+              automatyczny monitoring ważności certyfikatów.
+      - heading: "3. Ustalenia"
+        blocks:
+          - ol:
+              - "Rekrutacja 2 magazynierów na zastępstwo w Poznaniu – odpowiedzialna Marta Lis, termin 2026-10-10."
+              - "Monitoring certyfikatów TLS – odpowiedzialny Jakub Nowicki, termin 2026-10-31."
+              - "Kolejne spotkanie kadry kierowniczej: 2026-10-16."
+
+  # ------------------------------------------------------------------
+  - id: doc08
+    file: 08_client_contract_brzozowski.pdf
+    language: pl
+    render: text
+    title: Umowa o świadczenie usług logistycznych nr LL/2026/0147
+    meta: "Zawarta dnia 2026-03-20 we Wrocławiu"
+    sections:
+      - heading: "Strony umowy"
+        blocks:
+          - p: >-
+              Lumen Logistics sp. z o.o. z siedzibą we Wrocławiu, ul. Testowa 7, 53-000 Wrocław,
+              zwana dalej Usługodawcą, reprezentowana przez Annę Wiśniewską-Zając – prokurenta,
+          - p: >-
+              oraz Brzozowski Meble sp. j. z siedzibą w Oleśnicy, ul. Wymyślona 4, 56-400 Oleśnica,
+              zwana dalej Klientem, reprezentowana przez Krzysztofa Brzozowskiego – wspólnika
+              (k.brzozowski@example.com, tel. +48 603 456 789).
+      - heading: "§1. Przedmiot umowy"
+        blocks:
+          - p: >-
+              Usługodawca zobowiązuje się do świadczenia na rzecz Klienta usług transportu paletowego
+              (kod T01) oraz magazynowania (kod M01) zgodnie z obowiązującym Cennikiem usług
+              logistycznych. Szacowany wolumen to 120 palet miesięcznie.
+      - heading: "§2. Okres obowiązywania"
+        blocks:
+          - p: >-
+              Umowa zostaje zawarta na czas określony 12 miesięcy, od dnia 2026-04-01 do dnia
+              2027-03-31. Klientowi przysługują rabaty przewidziane w Cenniku dla umów zawartych
+              na co najmniej 12 miesięcy.
+      - heading: "§3. Płatności"
+        blocks:
+          - p: >-
+              Usługodawca wystawia faktury raz w miesiącu. Termin płatności wynosi 21 dni od daty
+              wystawienia faktury. Płatności należy dokonywać na rachunek bankowy Usługodawcy
+              nr PL00 0000 0000 0000 0000 0000 0000. Rachunek Klienta do zwrotów:
+              PL00 0000 0000 0000 0000 0000 0001.
+      - heading: "§4. Odpowiedzialność"
+        blocks:
+          - p: >-
+              Odpowiedzialność Usługodawcy za utratę lub uszkodzenie ładunku ograniczona jest do
+              kwoty 50 000 zł na jedno zdarzenie, chyba że Klient wykupi ubezpieczenie ładunku (kod U01).
+      - heading: "§5. Wypowiedzenie"
+        blocks:
+          - p: >-
+              Każda ze stron może wypowiedzieć umowę z zachowaniem 3-miesięcznego okresu wypowiedzenia
+              ze skutkiem na koniec miesiąca kalendarzowego.
+
+  # ------------------------------------------------------------------
+  - id: doc09
+    file: 09_memo_scan_2026_10_02.pdf
+    language: pl
+    render: scan
+    title: NOTATKA SŁUŻBOWA nr 14/2026
+    meta: "Wrocław, 2026-10-02"
+    sections:
+      - heading: "Do: wszyscy pracownicy magazynu we Wrocławiu"
+        blocks:
+          - p: >-
+              W związku ze zbliżającym się szczytem sprzedażowym informuję, że od dnia
+              1 listopada 2026 r. magazyn we Wrocławiu przechodzi na pracę w systemie
+              trzyzmianowym (6:00–14:00, 14:00–22:00, 22:00–6:00).
+          - p: >-
+              Zmiana nocna otrzymuje dodatek w wysokości 25% stawki godzinowej.
+              Zapisy na zmianę nocną przyjmuje dział HR do 20 października.
+          - p: >-
+              Nowy wewnętrzny numer dyżurny BHP: 4477.
+          - p: >-
+              Anna Wiśniewska-Zając, dyrektor operacyjna
+
+  # ------------------------------------------------------------------
+  - id: doc10
+    file: 10_customer_faq_en.pdf
+    language: en
+    render: text
+    title: Customer FAQ – Lumen Logistics
+    meta: "Last updated: 2026-05-10"
+    sections:
+      - heading: "Shipping and delivery"
+        blocks:
+          - p: >-
+              How long does domestic delivery take? Parcels are delivered within 24–48 hours of
+              dispatch. Pallets are delivered within 2–3 business days.
+          - p: >-
+              What is the maximum weight of a pallet? A standard EUR pallet shipment can weigh up to
+              1,000 kg, and the maximum loaded height is 1.8 m.
+          - p: >-
+              Do you ship internationally? We currently deliver only within Poland. We do not handle
+              customs clearance.
+      - heading: "Tracking"
+        blocks:
+          - p: >-
+              How can I track my shipment? Use the tracking number from your confirmation e-mail on
+              track.example.com. Tracking data is updated every 30 minutes.
+      - heading: "Customer support"
+        blocks:
+          - p: >-
+              How can I contact support? E-mail support@example.com or call our hotline Monday to
+              Friday, 7:00–20:00 (CET). Complaints should be sent to reklamacje@example.com.

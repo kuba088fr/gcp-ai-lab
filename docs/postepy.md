@@ -38,3 +38,15 @@ Nowe wpisy dopisuj na dole. Jeden wpis = jeden krok z `docs/roadmap.md`.
 **Koszt (szacunek):** 0 USD.
 **Problemy / pytania otwarte:** Czy wywołania `ML.GENERATE_*` z BigQuery są księgowane pod Vertex AI (i blokowane przez cap)? Sprawdzić SKU w raporcie billingowym po pierwszym wywołaniu w 1.3.
 **Następny krok:** 1.0 Dane testowe — syntetyczne PDF-y.
+
+## 2026-11-06 — Lab 01, krok 1.0: Dane testowe
+**Co zrobione:** Korpus 10 dokumentów fikcyjnej firmy Lumen Logistics w `labs/01-rag-bigquery/test_data/documents.yaml`, 18 znanych faktów z tagami trudności w `facts.yaml`, generator `scripts/generate_pdfs.py` (fpdf2 + Pillow). Wygenerowane PDF-y (12 stron, ~0,6 MB) w `data/` (gitignored). Lokalny `.venv` na Pythonie 3.11.
+**Czego się nauczyłem / wnioski:**
+- Dane testowe RAG = fixture'y: znane fakty w znanych miejscach + celowo trudne przypadki (wersje, tabele, multi-hop, skan, inny język, sprzeczności, PII, brak odpowiedzi).
+- Treść (YAML) w gicie, PDF jako artefakt builda — odtwarzalny.
+- Fonty wbudowane w PDF są Latin-1; polskie znaki wymagają osadzonego TTF.
+- Skan nie ma warstwy tekstowej — sprawdzimy w 1.3, czy Gemini go odczyta.
+- Fikcyjny PESEL: poprawny format, błędna suma kontrolna (skrypt to weryfikuje).
+**Koszt (szacunek):** 0 USD (lokalnie).
+**Problemy / pytania otwarte:** Na komputerze jest tylko Python 3.11 (CLAUDE.md zakłada 3.12+); generatorowi to nie przeszkadza, do sprawdzenia przed ADK w labie 02.
+**Następny krok:** 1.1 Fundament w `infra/main.tf` (API, bucket, dataset, connection, IAM).

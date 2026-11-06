@@ -9,7 +9,7 @@ Odhaczaj `- [x]` po zakończeniu kroku. Szczegóły każdego kroku: `docs/postep
 - [x] 0.1 Budżet i alerty kosztowe (ręcznie w konsoli GCP) ⭐ *zmiana*
 
 ## 01 RAG w BigQuery
-- [ ] 1.0 Dane testowe: 5–20 syntetycznych PDF-ów (część z fikcyjnymi danymi osobowymi) ⭐ *zmiana*
+- [x] 1.0 Dane testowe: 5–20 syntetycznych PDF-ów (część z fikcyjnymi danymi osobowymi) ⭐ *zmiana*
 - [ ] 1.1 Fundament w `infra/main.tf`
   - włączenie potrzebnych API
   - bucket GCS na surowe PDF-y w EU (`force_destroy = true`, bez dostępu publicznego, uniform bucket-level access, bez wersjonowania i soft delete)
