@@ -26,3 +26,15 @@ Nowe wpisy dopisuj na dole. Jeden wpis = jeden krok z `docs/roadmap.md`.
 **Koszt (szacunek):** 0 USD (bez operacji w chmurze).
 **Problemy / pytania otwarte:** Do doczytania: wersjonowanie embeddingów (kolumna z nazwą modelu), task type w `ML.GENERATE_EMBEDDING`.
 **Następny krok:** 0.1 Budżet i alerty kosztowe w konsoli GCP.
+
+## 2026-11-06 — Lab 00, krok 0.1: Budżet i alerty kosztowe
+**Co zrobione:** Repo wypchnięte na GitHub (prywatne `kuba088fr/gcp-ai-lab`). W konsoli: budżet *Alerts only* na wszystkie usługi (20 USD, progi 25/50/100% actual + 100% forecasted, kredyty odznaczone) oraz budżet *Spend cap enforcement* `lab-vertex-ai-cap` na Vertex AI (10 USD).
+**Czego się nauczyłem / wnioski:**
+- Budżet *Alerts only* to tylko powiadomienie (jak SLA miss w Airflow), z opóźnieniem rzędu godzin — przychodzi po fakcie.
+- Spend cap (nowość) realnie pauzuje usługę, ale tylko dla 4 usług: Cloud Run, Cloud Run Functions, Gemini API, Vertex AI. **BigQuery nie jest objęte.**
+- Kredyty trzeba odznaczyć w budżecie, inaczej koszt netto = 0 i alert nigdy nie przyjdzie.
+- W billingu i API nadal „Vertex AI” / `aiplatform.googleapis.com`, mimo rebrandingu na Gemini Enterprise Agent Platform. Nasz ruch do modeli (BQ connection, ADK z ADC) idzie przez `aiplatform`, nie przez Gemini API (klucze).
+- Free Trial blokuje edycję quot (w tym BQ „Query usage per day”). Zamiennik: `--maximum_bytes_billed` (CLI: domyślnie w `~/.bigqueryrc`, konsola: Query settings) + `--dry_run`. Bez upgrade'u konta trial sam w sobie ogranicza wydatki do kredytu.
+**Koszt (szacunek):** 0 USD.
+**Problemy / pytania otwarte:** Czy wywołania `ML.GENERATE_*` z BigQuery są księgowane pod Vertex AI (i blokowane przez cap)? Sprawdzić SKU w raporcie billingowym po pierwszym wywołaniu w 1.3.
+**Następny krok:** 1.0 Dane testowe — syntetyczne PDF-y.

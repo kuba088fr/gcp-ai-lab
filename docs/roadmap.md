@@ -6,7 +6,7 @@ Odhaczaj `- [x]` po zakończeniu kroku. Szczegóły każdego kroku: `docs/postep
 
 ## 00 Koncepcje (tylko rozmowa, bez kodu)
 - [x] 0.0 LLM, embeddingi, chunking, podobieństwo wektorów, RAG, agent, MCP, A2A
-- [ ] 0.1 Budżet i alerty kosztowe (ręcznie w konsoli GCP) ⭐ *zmiana*
+- [x] 0.1 Budżet i alerty kosztowe (ręcznie w konsoli GCP) ⭐ *zmiana*
 
 ## 01 RAG w BigQuery
 - [ ] 1.0 Dane testowe: 5–20 syntetycznych PDF-ów (część z fikcyjnymi danymi osobowymi) ⭐ *zmiana*
